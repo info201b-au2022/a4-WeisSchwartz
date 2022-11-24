@@ -30,11 +30,11 @@ report to revise law and enforcement so that race can become less of a
 determinant for who is jailed and who is not. The secondary stakeholders,
 by extension, is the black and latinx communities that are affected by
 disproportionate jailing.
-The questions I answered were:
--How has the total U.S. jail population increased over the years?
--How has the total jail population in certain counties increased over the years?
+The questions I answered were:  
+-How has the total U.S. jail population increased over the years?  
+-How has the total jail population in certain counties increased over the years?  
 -How do the percentages of the black population in counties and in their jails
-compare?
+compare?  
 -Which counties have a different majority demographic between the county
 population and the jail population?
 
