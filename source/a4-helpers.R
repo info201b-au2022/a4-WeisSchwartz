@@ -6,7 +6,7 @@ library(tidyverse)
 # Note: The CSV file is stored on my local machine to speed load times
 #---------------------------------------------------------------------------#
 get_data <- function(num_records=-1) {
-  fname <- "~/Documents/info201/data/incarceration_trends.csv"
+  fname <- "/Users/kenshogendzwill/Library/CloudStorage/OneDrive-Personal/UW/2022-2023/Fall 2022/INFO 201/assignments/a4-WeisSchwartz/data/incarceration_trends.csv"
   df <- read.csv(fname, nrows=num_records)
   return(df)
 }

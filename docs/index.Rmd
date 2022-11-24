@@ -1,45 +1,99 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: "Overrepresentation in Jails in U.S. Counties"
+author: "Kensho Gendzwill"
+date: '2022-11-21'
 output: html_document
 ---
 
-```{r echo=FALSE, eval=TRUE, message=FALSE}
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 source("../source/a4-helpers.R")
 source("../source/analysis.R")
 ```
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
-
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
-
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
+In this report, I demonstrate that black people disproportionately make up more
+of the jail population relative to the general county population in a vast
+majority of counties. I also show that black and latinx people routinely make up
+majority jail populations in counties where they are minorities, while the same
+is rarely true for white people.
 
 ## Introduction 
-[TODO]
+In this project, my analysis focused on how certain races were misrepresented in
+each U.S. county's jail system. In this report, I have demonstrated that black
+and latinx people tend to be overrepresented in jails when compared to the 
+county population. Black and latinx people have a long history of being targeted
+and oppressed by the U.S. legal system, and this report provides analysis in
+support of this claim. The primary stakeholders of this report are policymakers
+and law enforcement officers, especially those who represent the counties that
+this report has found inequalities in. I hope they can use the results of this
+report to revise law and enforcement so that race can become less of a
+determinant for who is jailed and who is not. The secondary stakeholders,
+by extension, is the black and latinx communities that are affected by
+disproportionate jailing.
+The questions I answered were:
+-How has the total U.S. jail population increased over the years?
+-How has the total jail population in certain counties increased over the years?
+-How do the percentages of the black population in counties and in their jails
+compare?
+-Which counties have a different majority demographic between the county
+population and the jail population?
 
 ## Data Summary 
-[TODO]
+In my analysis, I chose to analyze which counties misrepresented certain races
+in their prisons. My first attempt at this was to compare the percentage of
+black people in each county and their jails. My results showed me that in
+`r black_pop_county_count` counties, more black people represented the jail
+population than they did in the county population. This means that black people
+were overrepresented in jails in `r black_pop_diff_pct`% of all U.S. counties.  
+Secondly, I compared the majority demographic of each U.S. county with the
+majority demographic in each county's jail population. This analysis showed that
+`r most_pop_combined_count` out of all `r county_count_2018` counties had a majority
+jail demographic that was different from its majority county demographic. This
+amounts to `r most_pop_diff_pct`% of all counties.
 
-[TODO ... other sections ... See Canvas for details]
+## Growth of the U.S. Prison Population
+```{r, fig.width=10, fig.height=4, echo=FALSE, fig.cap="Increase of Jail Population in U.S. - a bar chart showing the trend of the total incarcerated population in the U.S. from 1970 to 2018."}
+plot_jail_pop_for_us()
+```
+The graph shows a trend of mostly increasing incarcerations since 1970. The
+incarcerated population was at an all time low around 1971, and steady grew
+until it reached its peak in 2009. Since then, the total incarceration
+population has shrunk by around 50,000 people. 
 
-_All the very best with your work!_
+## Growth of the Prison Population by State
+```{r, fig.width=10, fig.height=4, echo=FALSE, fig.cap="Increase of Jail Population in U.S. States - a line chart showing the trend of the total incarcerated population in U.S. states from 1970 to 2018. States to be displayed are specified in function call.", message=FALSE}
+plot_jail_pop_by_state(c('AZ', 'CO', 'ID', 'MT', 'NV', 'NM', 'UT', 'WY'))
+```
+The graph shows a trend of incarcerations in the mountain states since 1970. The
+states were chosen so the incarceration trends could be analyzed across a single
+U.S. region. According to the graph, the incarcerated population was at an all
+time low around 1971 for most states, and steady grew until it reached its peak
+in 2009. Since then, most states in the region have seen a decrease in total
+incarcerated population.
 
+## Comparing the Percentages of the Black Population in County and Jail
+```{r, fig.width=8, fig.height=8, echo=FALSE, fig.cap="Percentage of the Black Population in County and Jail - a scatter plot showing the percentage of the black population in each county and its jails (2018)."}
+plot_black_pop()
+```
+The graph shows a scatter plot of the percentage of the black population in each
+county and its jails from 2018. Each dot represents a county in the U.S. The
+dots are color-coded by region. The line y=x is plotted for reference. If all of
+the points were along this line, we would be able to say that there is no
+correlation between being black and being in jail. However, a majority of the
+points are above the line, meaning that black people are overrepresented in
+jails. The problem especially seems to be bad in midwestern states, where low
+county populations of black people are juxtaposed by high jail populations of
+black people. 
+
+## Comparing Majority Demographics in U.S. Counties and their Jails
+```{r, fig.width=10, fig.height=5, echo=FALSE, fig.cap="Majority Demographic in U.S. Counties and their Jails - the first plot shows a map of the U.S., each county color-coded with its majority demographic. The second plot shows the same map, color-coded with each county's majority jail demographic"}
+plot_most_pop()
+plot_most_pop_jail()
+```
+The two maps show where the majority demographic of a county is misrepresented
+in its jails. Namely, large swaths of counties in the southeast seem to
+disproportionately jail black people. The same holds true for latinx people in
+the southwest. In general, it seems rare for white people to represent a majority
+in jails where they are not the majority in the county population, while it is
+more common for black and latinx people to represent a jailed majority in
+counties where they are a minority.
